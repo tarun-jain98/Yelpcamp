@@ -1,0 +1,59 @@
+<!--<% include ./partials/header %>-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Yelpcamp</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="/stylesheets/main.css">
+    </head>
+    <body background="http://www.sss-solutions.org/wp-content/uploads/2018/01/1116146294-login-page-background-image-112.jpg">
+     <nav class="navbar navbar-default">
+         <div class="container-fluid">
+             <div class="navbar-header">
+                 <a class="navbar-brand" href="/">Yelpcamp</a>
+             </div>
+             <div class="collapse navbar-collapse">
+                 <ul class=" nav navbar-nav navbar-right">
+                     <% if(!currentUser){ %>
+                         <li><a href="/login">Login</a></li>
+                         <li><a href="/register">Sign Up</a></li>
+                    <% }else{ %>
+                        <li><a href="#">Signed in as <%= currentUser.username %></a></li>
+                        <li><a href="/logout">Logout</a></li>
+                      <%  } %>
+                 </ul>
+             </div>
+         </div>
+     </nav> 
+     <div class="container">
+         <% if(error && error.length>0){ %>
+         <div class="alert alert-danger">
+             <%= error %>
+         </div>
+         <% } %>
+         <% if(success && success.length>0){ %>
+         <div class="alert alert-success">
+             <%= success %>
+         </div>
+         <% } %>
+     </div>
+<div class="container">
+   <div class="row">
+        <h1 id = "t1" style="text-align:center;">Sign up here</h1>
+        <div style="width:30%; margin:25px auto;">
+
+        <form action="/register" method="POST">
+            <div class="form-group">
+                       <input  class="form-control" type="text" name="username" placeholder = "username"> 
+                    </div>
+                    <div class="form-group">
+                       <input  class="form-control" type="text" name="password" placeholder = "password"> 
+                    </div>
+                    <div class="form-group">
+                       <button class="btn btn-lg btn-primary btn-block">Sign Up</button> 
+                    </div>
+        </form>
+        </div>
+    </div>
+</div>
+<% include ./partials/footer %>
